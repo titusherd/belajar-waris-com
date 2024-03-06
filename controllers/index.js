@@ -1,8 +1,6 @@
 import 'dotenv/config'
 import { createRequire } from "module";
 import axios from "axios";
-
-
 const require = createRequire(import.meta.url);
 const midtrans = require('midtrans-client');
 
@@ -20,18 +18,21 @@ class Controller {
 
     static midtrans = (req, res) => {
         const snap = new midtrans.Snap({
-            isProduction: false,
+            isProduction: true,
             serverKey: process.env.SERVER_KEY,
             clientKey: process.env.CLIENT_KEY
         });
 
+        const price = req.body.price;
+
         const user = req.body;
+
 
 
         const parameter = {
             "transaction_details": {
                 "order_id": "test-transaction-123" + Math.round((new Date()).getTime() / 1000),
-                "gross_amount": 200000
+                "gross_amount": price
             }, "credit_card": {
                 "secure": true
             }
@@ -40,6 +41,7 @@ class Controller {
         snap.createTransaction(parameter)
             .then((transaction) => {
                 // transaction token
+                console.log(transaction);
                 let transactionToken = transaction.token;
                 console.log('transactionToken:', transactionToken);
                 console.log(user);

@@ -3,7 +3,9 @@ export default {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      'grey': '#f7f7f7'
+    },
   },
   variants: {
     extend: {},
