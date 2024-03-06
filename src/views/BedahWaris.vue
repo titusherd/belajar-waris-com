@@ -17,7 +17,8 @@ import axios from "axios";
             role="alert"
           >
             <span className="block text-sm sm:inline">
-              Your payment has been successfully processed.
+              Your payment has been successfully processed. You've been enrolled
+              in the course.
             </span>
           </div>
 
@@ -129,8 +130,9 @@ import axios from "axios";
           className="text-sm font-semibold leading-6 text-gray-900"
         >
           Cancel
-        </button>
+      </button>
         <button
+          id="submit-button"
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           type="submit"
         >
@@ -160,13 +162,14 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
-          price: 600000,
+          price: 1,
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
           const lastName = response.data.user.lastName;
           const email = response.data.user.email;
           const token = response.data.transactionToken;
+          const button = document.getElementById("submit-button");
 
           snap.pay(token, {
             onSuccess: (result) => {
@@ -174,9 +177,13 @@ export default {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                // api_key: "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.af1a85093bbc570250e4864fe708e469.9bf8e679024911ed014a66985da101d7&isdebug=false"
+                apiUrl:
+                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.af1a85093bbc570250e4864fe708e469.9bf8e679024911ed014a66985da101d7&isdebug=false",
               });
               this.successAlert = true;
+              button.disabled = true;
+              button.className =
+                "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
             },
             onPending: (result) => {
               this.pendingAlert = true;

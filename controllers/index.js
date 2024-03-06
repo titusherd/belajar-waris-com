@@ -22,13 +22,8 @@ class Controller {
             serverKey: process.env.SERVER_KEY,
             clientKey: process.env.CLIENT_KEY
         });
-
         const price = req.body.price;
-
         const user = req.body;
-
-
-
         const parameter = {
             "transaction_details": {
                 "order_id": "test-transaction-123" + Math.round((new Date()).getTime() / 1000),
@@ -54,9 +49,10 @@ class Controller {
     }
 
     static zoho = (req, res) => {
-        const apiUrl = "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.27f0c2b0e2836c2dde1a6ea74f750e7d.af27c5777413cd30816dd86a7b79507c&isdebug=false";
         const recivedData = req.body;
         console.log('Received post data:', recivedData);
+        const apiUrl = recivedData.apiUrl
+
 
         axios.post(apiUrl, recivedData)
             .then(res => {
