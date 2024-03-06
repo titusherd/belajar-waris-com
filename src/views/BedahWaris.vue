@@ -162,7 +162,7 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
-          price: 1,
+          price: 600000,
         })
         .then((response) => {
           const firstName = response.data.user.firstName;

@@ -131,6 +131,7 @@ import axios from "axios";
           Cancel
         </button>
         <button
+          id="submit-button"
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           type="submit"
         >
@@ -168,6 +169,7 @@ export default {
           const lastName = response.data.user.lastName;
           const email = response.data.user.email;
           const token = response.data.transactionToken;
+          const button = document.getElementById("submit-button");
 
           snap.pay(token, {
             onSuccess: (result) => {
@@ -175,9 +177,13 @@ export default {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                // api_key: "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.8c3a0d32e69047ec076c536a592df9ae.a461d07a1134d84a67cf5125695493ca&isdebug=false"
+                apiUrl:
+                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.8c3a0d32e69047ec076c536a592df9ae.a461d07a1134d84a67cf5125695493ca&isdebug=false",
               });
               this.successAlert = true;
+              button.disabled = true;
+              button.className =
+                "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
             },
             onPending: (result) => {
               this.pendingAlert = true;
