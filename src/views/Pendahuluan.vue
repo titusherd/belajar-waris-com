@@ -9,7 +9,7 @@ import axios from "axios";
     <form @submit.prevent="SubmitEvent">
       <h1 id="result-json" className="text-dark"></h1>
       <div className="space-y-12">
-        <img src="../assets/header.jpeg" class="h-15 w-auto" alt="" />
+        <img src="../assets/header.jpeg" class="h-20 w-auto" alt="" />
         <div>
           <div
             v-if="successAlert"
