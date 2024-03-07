@@ -130,7 +130,7 @@ import axios from "axios";
           className="text-sm font-semibold leading-6 text-gray-900"
         >
           Cancel
-      </button>
+        </button>
         <button
           id="submit-button"
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -158,7 +158,7 @@ export default {
   methods: {
     SubmitEvent() {
       axios
-        .post("http://localhost:3000/posts", {
+        .post("/api/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -173,7 +173,7 @@ export default {
 
           snap.pay(token, {
             onSuccess: (result) => {
-              axios.post("http://localhost:3000/zoho", {
+              axios.post("/api/zoho", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
