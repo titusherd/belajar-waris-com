@@ -184,6 +184,7 @@ export default {
               button.disabled = true;
               button.className =
                 "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
+              window.location.href = "https://www.belajarwaris.com";
             },
             onPending: (result) => {
               this.pendingAlert = true;
