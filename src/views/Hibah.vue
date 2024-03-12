@@ -17,7 +17,8 @@ import axios from "axios";
             role="alert"
           >
             <span className="block text-sm sm:inline">
-              Your payment has been successfully processed.
+              Your payment has been successfully processed. You've been enrolled
+              in the course.
             </span>
           </div>
 
@@ -50,7 +51,7 @@ import axios from "axios";
                 Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Pendahuluan Bedah Waris - Rp 25.000 / year
+                Hibah Untuk Ahli Waris - Rp 25.000 / year
               </p>
             </div>
           </div>
@@ -149,7 +150,6 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      price: 25000,
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
@@ -158,11 +158,11 @@ export default {
   methods: {
     SubmitEvent() {
       axios
-        .post("/http://localhost:3000/posts", {
+        .post("/api/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
-          price: this.price,
+          price: 600000,
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
@@ -173,12 +173,12 @@ export default {
 
           snap.pay(token, {
             onSuccess: (result) => {
-              axios.post("/http://localhost:3000/zoho", {
+              axios.post("/api/zoho", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 apiUrl:
-                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.8c3a0d32e69047ec076c536a592df9ae.a461d07a1134d84a67cf5125695493ca&isdebug=false",
+                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.af1a85093bbc570250e4864fe708e469.9bf8e679024911ed014a66985da101d7&isdebug=false",
               });
               this.successAlert = true;
               button.disabled = true;
