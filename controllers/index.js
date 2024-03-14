@@ -12,7 +12,6 @@ class Controller {
         console.log('Received post data:', data);
         // console.log('Received post data: TESTTT');
         // res.send('Testtt');
-
         // Process the post data, save to database, etc.
     }
 
@@ -24,9 +23,11 @@ class Controller {
         });
         const price = req.body.price;
         const user = req.body;
+        const order_id = req.body.order_id;
+
         const parameter = {
             "transaction_details": {
-                "order_id": "test-transaction-123" + Math.round((new Date()).getTime() / 1000),
+                "order_id": order_id + Math.round((new Date()).getTime() / 1000),
                 "gross_amount": price
             }, "credit_card": {
                 "secure": true

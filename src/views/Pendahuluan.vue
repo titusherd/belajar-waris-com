@@ -158,11 +158,12 @@ export default {
   methods: {
     SubmitEvent() {
       axios
-        .post("/http://localhost:3000/posts", {
+        .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
           price: this.price,
+          order_id: "Pendahuluan Bedah Waris",
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
@@ -173,7 +174,7 @@ export default {
 
           snap.pay(token, {
             onSuccess: (result) => {
-              axios.post("/http://localhost:3000/zoho", {
+              axios.post("http://localhost:3000/zoho", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,

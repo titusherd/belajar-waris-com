@@ -158,11 +158,12 @@ export default {
   methods: {
     SubmitEvent() {
       axios
-        .post("/api/posts", {
+        .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
-          price: 600000,
+          price: 25000,
+          order_id: "Hibah Waris",
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
@@ -173,12 +174,12 @@ export default {
 
           snap.pay(token, {
             onSuccess: (result) => {
-              axios.post("/api/zoho", {
+              axios.post("http://localhost:3000/zoho", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
                 apiUrl:
-                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.af1a85093bbc570250e4864fe708e469.9bf8e679024911ed014a66985da101d7&isdebug=false",
+                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.cf6c3baccda3096083b260b60396684e.5e5bfe6dd5935529f4a9cce929f8a9d4&isdebug=false",
               });
               this.successAlert = true;
               button.disabled = true;

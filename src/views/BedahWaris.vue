@@ -139,7 +139,7 @@ import axios from "axios";
           Proceed Payment
         </button>
       </div>
-  </form>
+    </form>
   </main>
 </template>
 
@@ -163,6 +163,7 @@ export default {
           lastName: this.lastName,
           email: this.email,
           price: 600000,
+          order_id: "Bedah Waris",
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
