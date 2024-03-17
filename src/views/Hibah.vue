@@ -158,7 +158,7 @@ export default {
   methods: {
     SubmitEvent() {
       axios
-        .post("http://localhost:3000/posts", {
+        .post("/api/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -174,7 +174,7 @@ export default {
 
           snap.pay(token, {
             onSuccess: (result) => {
-              axios.post("http://localhost:3000/zoho", {
+              axios.post("/api/zoho", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
