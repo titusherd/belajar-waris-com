@@ -3,6 +3,7 @@ import { createRequire } from "module";
 import axios from "axios";
 const require = createRequire(import.meta.url);
 const midtrans = require('midtrans-client');
+const { google } = require('googleapis');
 
 class Controller {
     static getData = (req, res) => {
