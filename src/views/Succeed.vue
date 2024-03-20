@@ -17,11 +17,40 @@
           Thank you for completing your secure online payment.
           <br />
           <br />
-          Please check your email inbox. We've sent you a confirmation email
-          with all the details of your transaction.
+          <b
+            >Please check your email inbox. We've sent you an invitation
+            email.</b
+          >
+          <br />
+          Got questions? Reach out on
+          <a
+            href="https://wa.me/+6287765905528"
+            target="_blank"
+            class="bg-green-500 hover:bg-green-600 text-white font-semibold px-2 rounded-full inline-flex items-center"
+            ><img
+              src="../assets/whatsapp.svg"
+              alt="Instagram Logo"
+              class="w-4 h-4 inline-block mr-1"
+            />
+            Whatsapp</a
+          >
+          for instant support!
+          <br />
+          Follow us on Instagram
+          <a
+            href="https://www.instagram.com/belajarwaris"
+            target="_blank"
+            class="bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 text-white font-semibold px-2 rounded-full inline-flex items-center"
+            ><img
+              src="../assets/instagram.svg"
+              alt="Instagram Logo"
+              class="w-4 h-4 inline-block mr-1"
+            />
+            Instagram</a
+          >
+          for updates.
         </p>
-        <p>Have a great day!</p>
-        <div class="py-10 text-center">
+        <div class="py-8 text-center">
           <a
             href="https://www.belajarwaris.com/#/home"
             class="px-12 bg-red-600 hover:bg-red-700 text-white font-semibold py-3"
