@@ -187,7 +187,14 @@ export default {
               button.disabled = true;
               button.className =
                 "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-              window.location.href = "https://www.belajarwaris.com";
+              axios.post("http://localhost:3000/sheets", {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                price: this.price,
+                order_id: "Pendahuluan Bedah Waris",
+              });
+              this.$router.push("/succeed-transaction");
             },
             onPending: (result) => {
               this.pendingAlert = true;

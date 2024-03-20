@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 
 app.post('/posts', Controller.midtrans);
 app.post('/zoho', Controller.zoho);
+app.post('/sheets', Controller.sheets);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

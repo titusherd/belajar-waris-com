@@ -3,7 +3,6 @@ import { createRequire } from "module";
 import axios from "axios";
 const require = createRequire(import.meta.url);
 const midtrans = require('midtrans-client');
-const { google } = require('googleapis');
 
 class Controller {
     static getData = (req, res) => {
@@ -18,7 +17,7 @@ class Controller {
 
     static midtrans = (req, res) => {
         const snap = new midtrans.Snap({
-            isProduction: true,
+            isProduction: false,
             serverKey: process.env.SERVER_KEY,
             clientKey: process.env.CLIENT_KEY
         });
@@ -38,10 +37,10 @@ class Controller {
         snap.createTransaction(parameter)
             .then((transaction) => {
                 // transaction token
-                console.log(transaction);
+                // console.log(transaction);
                 let transactionToken = transaction.token;
-                console.log('transactionToken:', transactionToken);
-                console.log(user);
+                // console.log('transactionToken:', transactionToken);
+                // console.log(user);
                 // res.send(transactionToken);
                 res.json({ transactionToken: transactionToken, user });
             })
@@ -66,6 +65,12 @@ class Controller {
                 // res.status(500).json({ error: 'Error sending JSON data to external API' });
             });
     }
+
+    static sheets = (req, res) => {
+        const recivedData = req.body;
+        console.log('Received post data:', recivedData);
+    }
+
 }
 
 export default Controller;
