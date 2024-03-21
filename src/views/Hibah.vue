@@ -153,6 +153,8 @@ export default {
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
+      price: 25000,
+      order_id: "Hibah Untuk Ahli Waris",
     };
   },
   methods: {
@@ -163,8 +165,8 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
-          price: 25000,
-          order_id: "Hibah Waris",
+          price: this.price,
+          order_id: this.order_id,
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
@@ -187,7 +189,14 @@ export default {
               button.disabled = true;
               button.className =
                 "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-              window.location.href = "https://www.belajarwaris.com";
+              axios.post("http://localhost:3000/sheets", {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                price: this.price,
+                order_id: this.order_id,
+              });
+              this.$router.push("/succeed");
             },
             onPending: (result) => {
               this.pendingAlert = true;

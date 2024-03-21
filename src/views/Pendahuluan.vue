@@ -153,6 +153,7 @@ export default {
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
+      order_id: "Pendahuluan Ilmu Waris",
     };
   },
   methods: {
@@ -164,7 +165,7 @@ export default {
           lastName: this.lastName,
           email: this.email,
           price: this.price,
-          order_id: "Pendahuluan Bedah Waris",
+          order_id: this.order_id,
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
@@ -192,9 +193,9 @@ export default {
                 lastName: lastName,
                 email: email,
                 price: this.price,
-                order_id: "Pendahuluan Bedah Waris",
+                order_id: this.order_id,
               });
-              this.$router.push("/succeed-transaction");
+              this.$router.push("/succeed");
             },
             onPending: (result) => {
               this.pendingAlert = true;

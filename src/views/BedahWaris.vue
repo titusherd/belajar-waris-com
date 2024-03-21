@@ -150,6 +150,7 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
+      price: 600000,
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
@@ -159,12 +160,12 @@ export default {
     SubmitEvent() {
       axios
         // .post("/api/posts", {
-        .post("http://localhost:3000//posts", {
+        .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
-          price: 600000,
-          order_id: "Bedah Waris",
+          price: this.price,
+          order_id: "Bedah Kasus Waris",
         })
         .then((response) => {
           const firstName = response.data.user.firstName;
@@ -187,6 +188,14 @@ export default {
               button.disabled = true;
               button.className =
                 "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
+              axios.post("http://localhost:3000/sheets", {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                price: this.price,
+                order_id: this.order_id,
+              });
+              this.$router.push("/succeed");
             },
             onPending: (result) => {
               this.pendingAlert = true;
