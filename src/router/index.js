@@ -23,7 +23,7 @@ const router = createRouter({
       component: Hibah
     },
     {
-      path: '/succeed',
+      path: '/checkout/succeed',
       name: 'succeed',
       component: Succeed
     }
