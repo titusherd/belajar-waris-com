@@ -196,7 +196,7 @@ export default {
                 price: this.price,
                 order_id: this.order_id,
               });
-              this.$router.push("/checkout/succeed");
+              this.$router.push("/succeed");
             },
             onPending: (result) => {
               this.pendingAlert = true;
