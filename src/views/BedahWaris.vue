@@ -150,17 +150,18 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      price: 600000,
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
+      price: 600000,
+      order_id: "Bedah Kasus Waris ",
     };
   },
   methods: {
     SubmitEvent() {
       axios
         // .post("/api/posts", {
-          .post("http://localhost:3000/posts", {
+        .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -177,7 +178,7 @@ export default {
           snap.pay(token, {
             onSuccess: (result) => {
               // axios.post("/api/zoho", {
-                axios.post("http://localhost:3000/zoho", {
+              axios.post("http://localhost:3000/zoho", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
@@ -189,7 +190,7 @@ export default {
               button.className =
                 "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
               // axios.post("/api/sheets", {
-                axios.post("http://localhost:3000/sheets", {
+              axios.post("http://localhost:3000/sheets", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
