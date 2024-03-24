@@ -65,7 +65,7 @@ import axios from "axios";
                 htmlFor="firstName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                First name
+                Nama Depan
               </label>
               <div className="mt-2">
                 <input
@@ -85,7 +85,7 @@ import axios from "axios";
                 htmlFor="lastName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Last name
+                Nama Belakang
               </label>
               <div className="mt-2">
                 <input
@@ -105,7 +105,7 @@ import axios from "axios";
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                Alamat Email
               </label>
               <div className="mt-2">
                 <input
@@ -128,14 +128,14 @@ import axios from "axios";
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900"
         >
-          Cancel
+          Batal
         </button>
         <button
           id="submit-button"
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           type="submit"
         >
-          Proceed Payment
+          Proses Pembayaran
         </button>
       </div>
     </form>
@@ -149,7 +149,6 @@ export default {
       firstName: "",
       lastName: "",
       email: "",
-      price: 25000,
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,

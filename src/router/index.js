@@ -26,7 +26,7 @@ const router = createRouter({
       path: '/checkout/succeed',
       name: 'succeed',
       component: Succeed
-    }
+    },
   ]
 })
 

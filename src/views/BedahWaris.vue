@@ -48,10 +48,10 @@ import axios from "axios";
           >
             <div className="sm:col-span-4">
               <h2 class="text-base font-semibold leading-7 text-gray-900">
-                Course
+                Kelas
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Bedah Kasus Waris - Rp 600.000 / year
+                Bedah Kasus Waris - Rp 600.000 / tahun
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ import axios from "axios";
                 htmlFor="firstName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                First name
+                Nama Depan
               </label>
               <div className="mt-2">
                 <input
@@ -86,7 +86,7 @@ import axios from "axios";
                 htmlFor="lastName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Last name
+                Nama Belakang
               </label>
               <div className="mt-2">
                 <input
@@ -106,7 +106,7 @@ import axios from "axios";
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                Alamat Email
               </label>
               <div className="mt-2">
                 <input
@@ -129,14 +129,14 @@ import axios from "axios";
           type="button"
           className="text-sm font-semibold leading-6 text-gray-900"
         >
-          Cancel
+          Batal
         </button>
         <button
           id="submit-button"
           className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           type="submit"
         >
-          Proceed Payment
+          Proses Pembayaran
         </button>
       </div>
     </form>
@@ -189,7 +189,7 @@ export default {
               button.className =
                 "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
               axios.post("/api/sheets", {
-              // axios.post("http://localhost:3000/sheets", {
+                // axios.post("http://localhost:3000/sheets", {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,

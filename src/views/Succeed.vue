@@ -11,18 +11,18 @@
         <h3
           class="md:text-2xl text-base text-gray-900 font-semibold text-center"
         >
-          Payment Done!
+          Pembayaran Selesai!
         </h3>
         <p class="text-gray-600 my-2">
-          Thank you for completing your secure online payment.
+          Terima kasih telah menyelesaikan pembayaran online Anda.
           <br />
           <br />
-          <b
-            >Please check your email inbox. We've sent you an invitation
-            email.</b
+          <b>
+            Silakan periksa kotak masuk email Anda. Kami telah mengirimkan email
+            undangan kepada Anda.</b
           >
           <br />
-          Got questions? Reach out on
+          Punya pertanyaan? Hubungi kami di
           <a
             href="https://wa.me/+6287765905528"
             target="_blank"
@@ -34,9 +34,9 @@
             />
             Whatsapp</a
           >
-          for instant support!
+          untuk dukungan langsung!
           <br />
-          Follow us on Instagram
+          Ikuti kami di Instagram.
           <a
             href="https://www.instagram.com/belajarwaris"
             target="_blank"
@@ -48,14 +48,14 @@
             />
             Instagram</a
           >
-          for updates.
+          untuk update!
         </p>
         <div class="py-8 text-center">
           <a
             href="https://www.belajarwaris.com/#/home"
             class="px-12 bg-red-600 hover:bg-red-700 text-white font-semibold py-3"
           >
-            GO BACK
+            KEMBALI
           </a>
         </div>
       </div>
