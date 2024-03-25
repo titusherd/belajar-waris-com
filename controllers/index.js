@@ -19,7 +19,7 @@ class Controller {
 
     static midtrans = (req, res) => {
         const snap = new midtrans.Snap({
-            isProduction: true,
+            isProduction: true, //GANTI
             serverKey: process.env.SERVER_KEY,
             clientKey: process.env.CLIENT_KEY
         });

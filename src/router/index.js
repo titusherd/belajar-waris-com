@@ -3,6 +3,7 @@ import BedahWaris from '../views/BedahWaris.vue'
 import Pendahuluan from '../views/Pendahuluan.vue'
 import Hibah from '../views/Hibah.vue'
 import Succeed from '@/views/Succeed.vue'
+import Kompilasi from '@/views/Kompilasi.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,9 +24,14 @@ const router = createRouter({
       component: Hibah
     },
     {
-      path: '/checkout/succeed',
+      path: '/succeed',
       name: 'succeed',
       component: Succeed
+    },
+    {
+      path: '/checkout/khi',
+      name: 'kompilasi',
+      component: Kompilasi
     },
   ]
 })
