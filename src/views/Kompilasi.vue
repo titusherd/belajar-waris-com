@@ -153,8 +153,8 @@ export default {
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
-    //   GANTI
-      price: 25000,
+      //   GANTI
+      price: 1200000,
       order_id: "Kompilasi Hukum Islam",
     };
   },
@@ -162,7 +162,7 @@ export default {
     SubmitEvent() {
       axios
         .post("/api/posts", {
-        //   .post("http://localhost:3000/posts", {
+          //   .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
