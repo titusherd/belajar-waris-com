@@ -51,7 +51,7 @@ import axios from "axios";
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
                 <!-- GANTI -->
-                Kompilasi Hukum Islam - Rp 1200000 / tahun
+                Kompilasi Hukum Islam - Rp 1.200.000 / tahun
               </p>
             </div>
           </div>
