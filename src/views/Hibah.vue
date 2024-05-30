@@ -161,7 +161,7 @@ export default {
     SubmitEvent() {
       axios
         .post("/api/posts", {
-        // .post("http://localhost:3000/posts", {
+          // .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -174,41 +174,73 @@ export default {
           const email = response.data.user.email;
           const token = response.data.transactionToken;
           const button = document.getElementById("submit-button");
-
-          snap.pay(token, {
-            onSuccess: (result) => {
-              axios.post("/api/zoho", {
-              // axios.post("http://localhost:3000/zoho", {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                apiUrl:
-                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.cf6c3baccda3096083b260b60396684e.5e5bfe6dd5935529f4a9cce929f8a9d4&isdebug=false",
+          axios
+            .post("/api/sheets", {
+              // .post("http://localhost:3000/sheets", {
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              price: this.price,
+              order_id: this.order_id,
+              status: "SUBMITTED",
+            })
+            .then((response) => {
+              const firstName = response.data.firstName;
+              const lastName = response.data.lastName;
+              const email = response.data.email;
+              const updatedRange = response.data.updatedRange;
+              snap.pay(token, {
+                onSuccess: (result) => {
+                  console.log(result);
+                  axios.post("/api/zoho", {
+                    // axios.post("http://localhost:3000/zoho", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    apiUrl:
+                      "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.cf6c3baccda3096083b260b60396684e.5e5bfe6dd5935529f4a9cce929f8a9d4&isdebug=false",
+                  });
+                  this.successAlert = true;
+                  button.disabled = true;
+                  button.className =
+                    "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
+                  axios.post("/api/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    updatedRange: updatedRange,
+                    status: "PAID",
+                  });
+                  this.$router.push("/succeed");
+                },
+                onPending: (result) => {
+                  this.pendingAlert = true;
+                  axios.post("/api/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    updatedRange: updatedRange,
+                    status: "PENDING",
+                  });
+                },
+                onError: function (result) {
+                  this.pendingAlert = true;
+                  axios.post("/api/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    updatedRange: updatedRange,
+                    status: "ERROR",
+                  });
+                },
               });
-              this.successAlert = true;
-              button.disabled = true;
-              button.className =
-                "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-              axios.post("/api/sheets", {
-              // axios.post("http://localhost:3000/sheets", {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                price: this.price,
-                order_id: this.order_id,
-              });
-              this.$router.push("/succeed");
-            },
-            onPending: (result) => {
-              this.pendingAlert = true;
-            },
-            onError: function (result) {
-              this.pendingAlert = true;
-            },
-          });
-        })
-        .catch((error) => {
-          console.log(error);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         });
     },
   },

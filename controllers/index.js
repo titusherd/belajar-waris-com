@@ -6,15 +6,10 @@ const midtrans = require('midtrans-client');
 const { google } = require('googleapis');
 
 
+
 class Controller {
     static getData = (req, res) => {
-        // res.send('Hello, World!');
-        // console.log("EXPRESS");
         const data = req.body;
-        // console.log('Received post data:', data);
-        // console.log('Received post data: TESTTT');
-        // res.send('Testtt');
-        // Process the post data, save to database, etc.
     }
 
     static midtrans = (req, res) => {
@@ -56,7 +51,6 @@ class Controller {
         // console.log('Received post data:', recivedData);
         const apiUrl = recivedData.apiUrl
 
-
         axios.post(apiUrl, recivedData)
             .then(res => {
                 // console.log('Response from external API:', res.data);
@@ -74,10 +68,11 @@ class Controller {
         const firstName = recivedData.firstName;
         const lastName = recivedData.lastName;
         const email = recivedData.email;
-        const price = recivedData.price;
         const order_id = recivedData.order_id;
-        const date = new Date().toLocaleDateString('en-GB');
-        const time = new Date().toLocaleTimeString('en-GB');
+        const price = recivedData.price;
+        const date = new Date().toLocaleDateString('id-ID');
+        const time = new Date().toLocaleTimeString('id-ID');
+        const status = recivedData.status;
 
 
         // console.log(recivedData);
@@ -94,21 +89,60 @@ class Controller {
 
             const resource = { values };  // The data to be written.
 
-            try {
-                const res = await sheets.spreadsheets.values.append({
-                    spreadsheetId, range, valueInputOption, resource
-                })
-                return res;  // Returns the response from the Sheets API.
-            } catch (error) {
-                console.error('error', error);  // Logs errors.
-            }
+            const response = await sheets.spreadsheets.values.append({
+                spreadsheetId, range, valueInputOption, resource
+            }).then((result) => {
+                // console.log(response);
+                const updatedRange = result.data.updates.updatedRange;
+                // console.log(updatedRange);
+                // console.log(updatedRange);
+                res.json({ firstName: firstName, lastName: lastName, email: email, updatedRange: updatedRange })
+            }).catch((err) => {
+                console.log(err);
+            });
         }
 
         // Immediately-invoked function expression (IIFE) to execute the read and write operations.
         (async () => {
-            const writer = await writeToSheet([[date, firstName, lastName, email, order_id, price, time]]);
+            await writeToSheet([[date, firstName, lastName, email, order_id, price, time, status]]);
             // console.log(writer);  // Logs the write operation's response.
         })();
+    }
+
+    static updateStatus = (req, res) => {
+        const receivedData = req.body;
+        const status = receivedData.status;
+        const updatedRange = receivedData.updatedRange.split(":");
+        const column = updatedRange[1];
+        const row = `Sheet1!${column}`;
+        // console.log(row);
+
+        const auth = new google.auth.GoogleAuth({
+            keyFile: './google.json',  // Path to your service account key file.
+            scopes: ['https://www.googleapis.com/auth/spreadsheets']  // Scope for Google Sheets API.
+        });
+
+        const sheets = google.sheets({ version: 'v4', auth });  // Creates a Sheets API client instance.
+        const spreadsheetId = '1UjbyumySaUiT1d5OxQ3Q7eNAvJHNEJmQ8k6JsPbbeLo';  // The ID of the spreadsheet.
+        const range = row;  // The range in the sheet where data will be written.
+        const valueInputOption = 'USER_ENTERED';  // How input data should be interpreted.
+
+        let values = [[status]];
+        let resource = {
+            values,
+        };
+        sheets.spreadsheets.values.update({
+            spreadsheetId,
+            range,
+            valueInputOption,
+            resource
+        }, (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('%d cells updated.', result.updatedCells);
+            }
+        });
     }
 
 }

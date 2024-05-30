@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 app.post('/posts', Controller.midtrans);
 app.post('/zoho', Controller.zoho);
 app.post('/sheets', Controller.sheets);
+app.post('/updateStatus', Controller.updateStatus);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
