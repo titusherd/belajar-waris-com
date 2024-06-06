@@ -34,11 +34,11 @@ const router = createRouter({
       name: 'kompilasi',
       component: Kompilasi
     },
-    {
-      path: '/checkout/penerima-waris',
-      name: 'penerimawaris',
-      component: PenerimaWaris
-    }
+    // {
+    //   path: '/checkout/penerima-waris',
+    //   name: 'penerimawaris',
+    //   component: PenerimaWaris
+    // }
   ]
 })
 
