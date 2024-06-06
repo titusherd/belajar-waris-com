@@ -4,7 +4,6 @@ import Pendahuluan from '../views/Pendahuluan.vue'
 import Hibah from '../views/Hibah.vue'
 import Succeed from '@/views/Succeed.vue'
 import Kompilasi from '@/views/Kompilasi.vue'
-import PenerimaWaris from '@/views/PenerimaWaris.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
