@@ -17,8 +17,7 @@ import axios from "axios";
             role="alert"
           >
             <span className="block text-sm sm:inline">
-              Your payment has been successfully processed. You've been enrolled
-              in the course.
+              Your payment has been successfully processed.
             </span>
           </div>
 
@@ -48,10 +47,10 @@ import axios from "axios";
           >
             <div className="sm:col-span-4">
               <h2 class="text-base font-semibold leading-7 text-gray-900">
-                Kelas
+                Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Hibah Untuk Ahli Waris - Rp 25.000 / tahun
+                Penerima Waris Tanpa Takaran Tertentu - Rp 25.000 / year
               </p>
             </div>
           </div>
@@ -66,7 +65,7 @@ import axios from "axios";
                 htmlFor="firstName"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Nama depan
+                Nama Depan
               </label>
               <div className="mt-2">
                 <input
@@ -106,7 +105,7 @@ import axios from "axios";
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                Alamat Email
               </label>
               <div className="mt-2">
                 <input
@@ -154,14 +153,15 @@ export default {
       pendingAlert: false,
       errorAlert: false,
       price: 25000,
-      order_id: "Hibah Untuk Ahli Waris",
+      order_id: "Penerima Waris Tanpa Takaran Tertentu",
+      status: "",
     };
   },
   methods: {
     SubmitEvent() {
       axios
-        // .post("/api/posts", {
-        .post("http://localhost:3000/posts", {
+        .post("/api/posts", {
+          // .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -174,9 +174,10 @@ export default {
           const email = response.data.user.email;
           const token = response.data.transactionToken;
           const button = document.getElementById("submit-button");
+          axios;
           axios
-            // .post("/api/sheets", {
-            .post("http://localhost:3000/sheets", {
+            .post("/api/sheets", {
+              // .post("http://localhost:3000/sheets", {
               firstName: firstName,
               lastName: lastName,
               email: email,
@@ -191,21 +192,20 @@ export default {
               const updatedRange = response.data.updatedRange;
               snap.pay(token, {
                 onSuccess: (result) => {
-                  console.log(result);
-                  // axios.post("/api/zoho", {
-                  axios.post("http://localhost:3000/zoho", {
+                  axios.post("/api/zoho", {
+                    //   axios.post("http://localhost:3000/zoho", {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
                     apiUrl:
-                      "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.cf6c3baccda3096083b260b60396684e.5e5bfe6dd5935529f4a9cce929f8a9d4&isdebug=false",
+                      "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.8c3a0d32e69047ec076c536a592df9ae.a461d07a1134d84a67cf5125695493ca&isdebug=false",
                   });
                   this.successAlert = true;
                   button.disabled = true;
                   button.className =
                     "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-                  // axios.post("/api/updateStatus", {
-                  axios.post("http://localhost:3000/updateStatus", {
+                  axios.post("/api/updateStatus", {
+                    //   axios.post("http://localhost:3000/updateStatus", {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
@@ -216,8 +216,8 @@ export default {
                 },
                 onPending: (result) => {
                   this.pendingAlert = true;
-                  // axios.post("/api/updateStatus", {
-                  axios.post("http://localhost:3000/updateStatus", {
+                  axios.post("/api/updateStatus", {
+                    //   axios.post("http://localhost:3000/updateStatus", {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
@@ -227,8 +227,8 @@ export default {
                 },
                 onError: function (result) {
                   this.pendingAlert = true;
-                  // axios.post("/api/updateStatus", {
-                  axios.post("http://localhost:3000/updateStatus", {
+                  axios.post("/api/updateStatus", {
+                    //   axios.post("http://localhost:3000/updateStatus", {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,

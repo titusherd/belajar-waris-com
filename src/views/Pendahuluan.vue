@@ -210,7 +210,7 @@ export default {
                     lastName: lastName,
                     email: email,
                     updatedRange: updatedRange,
-                    status: "PAID",
+                    status: "INVITED",
                   });
                   this.$router.push("/succeed");
                 },
