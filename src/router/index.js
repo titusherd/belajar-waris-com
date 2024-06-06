@@ -4,6 +4,7 @@ import Pendahuluan from '../views/Pendahuluan.vue'
 import Hibah from '../views/Hibah.vue'
 import Succeed from '@/views/Succeed.vue'
 import Kompilasi from '@/views/Kompilasi.vue'
+import Penerima from '@/views/Penerima.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,11 +34,11 @@ const router = createRouter({
       name: 'kompilasi',
       component: Kompilasi
     },
-    // {
-    //   path: '/checkout/penerima-waris',
-    //   name: 'penerimawaris',
-    //   component: PenerimaWaris
-    // }
+    {
+      path: '/checkout/penerima',
+      name: 'penerima',
+      component: Penerima
+    }
   ]
 })
 
