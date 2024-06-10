@@ -105,6 +105,26 @@ import axios from "axios";
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
+                Nomer WhatsApp
+              </label>
+              <div className="mt-2">
+                <input
+                  id="phone"
+                  name="phone"
+                  type="phone"
+                  autoComplete="phone"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                  v-model="phone"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Alamat Email
               </label>
               <div className="mt-2">
@@ -148,6 +168,7 @@ export default {
     return {
       firstName: "",
       lastName: "",
+      phone: "",
       email: "",
       successAlert: false,
       pendingAlert: false,
@@ -164,6 +185,7 @@ export default {
           // .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
+          phone: this.phone,
           email: this.email,
           price: this.price,
           order_id: this.order_id,
@@ -171,6 +193,7 @@ export default {
         .then((response) => {
           const firstName = response.data.user.firstName;
           const lastName = response.data.user.lastName;
+          const phone = response.data.user.phone;
           const email = response.data.user.email;
           const token = response.data.transactionToken;
           const button = document.getElementById("submit-button");
@@ -180,6 +203,7 @@ export default {
               // .post("http://localhost:3000/sheets", {
               firstName: firstName,
               lastName: lastName,
+              phone: phone,
               email: email,
               price: this.price,
               order_id: this.order_id,
@@ -188,14 +212,16 @@ export default {
             .then((response) => {
               const firstName = response.data.firstName;
               const lastName = response.data.lastName;
+              const phone = response.data.phone;
               const email = response.data.email;
               const updatedRange = response.data.updatedRange;
               snap.pay(token, {
                 onSuccess: (result) => {
                   axios.post("/api/zoho", {
-                    //   axios.post("http://localhost:3000/zoho", {
+                    // axios.post("http://localhost:3000/zoho", {
                     firstName: firstName,
                     lastName: lastName,
+                    phone: phone,
                     email: email,
                     apiUrl:
                       "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.885929a1e3a4348c486e9feb1cabd9fe.78ff28b0dd01a84cd1040df7944000fb&isdebug=false",
@@ -205,9 +231,10 @@ export default {
                   button.className =
                     "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
                   axios.post("/api/updateStatus", {
-                    //   axios.post("http://localhost:3000/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
                     firstName: firstName,
                     lastName: lastName,
+                    phone: phone,
                     email: email,
                     updatedRange: updatedRange,
                     status: "INVITED",
@@ -217,9 +244,10 @@ export default {
                 onPending: (result) => {
                   this.pendingAlert = true;
                   axios.post("/api/updateStatus", {
-                    //   axios.post("http://localhost:3000/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
                     firstName: firstName,
                     lastName: lastName,
+                    phone: phone,
                     email: email,
                     updatedRange: updatedRange,
                     status: "PENDING",
@@ -228,9 +256,10 @@ export default {
                 onError: function (result) {
                   this.pendingAlert = true;
                   axios.post("/api/updateStatus", {
-                    //   axios.post("http://localhost:3000/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
                     firstName: firstName,
                     lastName: lastName,
+                    phone: phone,
                     email: email,
                     updatedRange: updatedRange,
                     status: "ERROR",

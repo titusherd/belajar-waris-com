@@ -67,6 +67,7 @@ class Controller {
         const recivedData = req.body;
         const firstName = recivedData.firstName;
         const lastName = recivedData.lastName;
+        const phone = recivedData.phone;
         const email = recivedData.email;
         const order_id = recivedData.order_id;
         const price = recivedData.price;
@@ -96,7 +97,7 @@ class Controller {
                 const updatedRange = result.data.updates.updatedRange;
                 // console.log(updatedRange);
                 // console.log(updatedRange);
-                res.json({ firstName: firstName, lastName: lastName, email: email, updatedRange: updatedRange })
+                res.json({ firstName: firstName, lastName: lastName, phone: phone, email: email, updatedRange: updatedRange })
             }).catch((err) => {
                 console.log(err);
             });
@@ -104,7 +105,7 @@ class Controller {
 
         // Immediately-invoked function expression (IIFE) to execute the read and write operations.
         (async () => {
-            await writeToSheet([[date, firstName, lastName, email, order_id, price, time, status]]);
+            await writeToSheet([[date, firstName, lastName, phone, email, order_id, price, time, status]]);
             // console.log(writer);  // Logs the write operation's response.
         })();
     }
