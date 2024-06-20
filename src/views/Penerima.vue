@@ -50,7 +50,8 @@ import axios from "axios";
                 Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Penerima Waris Tanpa Takaran Tertentu - Rp 25.000 / year
+                Mengetahui Ahli Waris dengan Bagian Tidak Terbatas - Rp 25.000 /
+                tahun
               </p>
             </div>
           </div>
@@ -174,7 +175,7 @@ export default {
       pendingAlert: false,
       errorAlert: false,
       price: 25000,
-      order_id: "Penerima Waris Tanpa Takaran Tertentu",
+      order_id: "Mengetahui Ahli Waris dengan Bagian Tidak Terbatas.",
       status: "",
     };
   },

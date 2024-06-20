@@ -15,7 +15,7 @@ const router = createRouter({
       component: BedahWaris
     },
     {
-      path: '/checkout/pendahuluan',
+      path: '/checkout/prinsip-dasar',
       name: 'pendahuluan',
       component: Pendahuluan
     },
@@ -35,10 +35,10 @@ const router = createRouter({
       component: Kompilasi
     },
     {
-      path: '/checkout/penerima',
+      path: '/checkout/mengetahui-ahli-waris',
       name: 'penerima',
       component: Penerima
-    }
+    },
   ]
 })
 
