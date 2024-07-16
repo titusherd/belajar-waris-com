@@ -5,6 +5,7 @@ import Hibah from '../views/Hibah.vue'
 import Succeed from '@/views/Succeed.vue'
 import Kompilasi from '@/views/Kompilasi.vue'
 import Penerima from '@/views/Penerima.vue'
+import HitungWaris from '@/views/HitungWaris.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,7 +40,11 @@ const router = createRouter({
       name: 'penerima',
       component: Penerima
     },
+    {
+      path: '/checkout/cara-menghitung-waris',
+      name: 'menghitung-waris',
+      component: HitungWaris
+    }
   ]
 })
-
 export default router
