@@ -50,7 +50,7 @@ import axios from "axios";
                 Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Cara Hitung Waris - Rp 25.000 / tahun
+                Cara Menghitung Waris - Rp 25.000 / tahun
               </p>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default {
       pendingAlert: false,
       errorAlert: false,
       price: 25000,
-      order_id: "Cara Hitung Waris",
+      order_id: "Cara Menghitung Waris",
       status: "",
     };
   },

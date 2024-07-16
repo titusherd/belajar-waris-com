@@ -1,0 +1,19 @@
+sudo -i
+
+cd /opt
+
+cd belajar-waris
+
+npm install
+
+git pull
+
+npm install
+
+npm run build
+
+pm2 status
+
+pm2 delete index
+
+pm2 start index.js
