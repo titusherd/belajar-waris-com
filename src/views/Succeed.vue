@@ -18,7 +18,7 @@
           <br />
           <br />
           <b>
-            Silakan periksa kotak masuk email Anda. Kami telah mengirimkan email
+            Silakan periksa kotak masuk email Anda dalam 15 menit. Kami akan mengirimkan email
             undangan kepada Anda.</b
           >
           <br />
