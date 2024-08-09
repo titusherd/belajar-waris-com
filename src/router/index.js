@@ -69,6 +69,8 @@ const router = createRouter({
       name: 'cara-mengembalikan-sisa-harta',
       component: CaraMengembalikanSisaHarta
     }
+
+    
   ]
 })
 export default router
