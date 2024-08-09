@@ -68,9 +68,7 @@ const router = createRouter({
       path: '/checkout/cara-mengembalikan-sisa-harta',
       name: 'cara-mengembalikan-sisa-harta',
       component: CaraMengembalikanSisaHarta
-    }
-
-    
+    },
   ]
 })
 export default router
