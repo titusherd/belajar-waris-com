@@ -50,7 +50,7 @@ import axios from "axios";
                 Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Wasiat untuk ahli waris - Rp 25.000 / tahun
+                Wasiat Untuk Ahli Waris - Rp 25.000 / tahun
               </p>
             </div>
           </div>
