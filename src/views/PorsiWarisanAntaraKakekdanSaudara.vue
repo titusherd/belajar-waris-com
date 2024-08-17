@@ -50,8 +50,7 @@ import axios from "axios";
                 Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                <!-- GANTI -->
-                Kompilasi Hukum Islam - Rp 35.000 / bulan
+                Porsi Warisan Antara Kakek dan Saudara - Rp 35.000 / tahun
               </p>
             </div>
           </div>
@@ -106,6 +105,26 @@ import axios from "axios";
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
+                Nomer WhatsApp
+              </label>
+              <div className="mt-2">
+                <input
+                  id="phone"
+                  name="phone"
+                  type="phone"
+                  autoComplete="phone"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                  v-model="phone"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
                 Alamat Email
               </label>
               <div className="mt-2">
@@ -149,22 +168,24 @@ export default {
     return {
       firstName: "",
       lastName: "",
+      phone: "",
       email: "",
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
-      //   GANTI
       price: 35000,
-      order_id: "Kompilasi Hukum Islam",
+      order_id: "Porsi Warisan Antara Kakek dan Saudara",
+      status: "",
     };
   },
   methods: {
     SubmitEvent() {
       axios
         .post("/api/posts", {
-        // .post("http://localhost:3000/posts", {
+          // .post("http://localhost:3000/posts", {
           firstName: this.firstName,
           lastName: this.lastName,
+          phone: this.phone,
           email: this.email,
           price: this.price,
           order_id: this.order_id,
@@ -172,44 +193,83 @@ export default {
         .then((response) => {
           const firstName = response.data.user.firstName;
           const lastName = response.data.user.lastName;
+          const phone = response.data.user.phone;
           const email = response.data.user.email;
           const token = response.data.transactionToken;
           const button = document.getElementById("submit-button");
-
-          snap.pay(token, {
-            onSuccess: (result) => {
-              axios.post("/api/zoho", {
-              // axios.post("http://localhost:3000/zoho", {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                apiUrl:
-                  "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.8c3a0d32e69047ec076c536a592df9ae.a461d07a1134d84a67cf5125695493ca&isdebug=false",
+          axios;
+          axios
+            .post("/api/sheets", {
+              // .post("http://localhost:3000/sheets", {
+              firstName: firstName,
+              lastName: lastName,
+              phone: phone,
+              email: email,
+              price: this.price,
+              order_id: this.order_id,
+              status: "SUBMITTED",
+            })
+            .then((response) => {
+              const firstName = response.data.firstName;
+              const lastName = response.data.lastName;
+              const phone = response.data.phone;
+              const email = response.data.email;
+              const updatedRange = response.data.updatedRange;
+              snap.pay(token, {
+                onSuccess: (result) => {
+                  axios.post("/api/zoho", {
+                    // axios.post("http://localhost:3000/zoho", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    email: email,
+                    apiUrl:
+                      "https://flow.zoho.com/839171716/flow/webhook/incoming?zapikey=1001.8485f55f133af664b759c3b3f0dfd2b2.5fe1410c0eeb0e5a4ae463d60785c17b&isdebug=false",
+                  });
+                  this.successAlert = true;
+                  button.disabled = true;
+                  button.className =
+                    "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
+                  axios.post("/api/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    email: email,
+                    updatedRange: updatedRange,
+                    status: "INVITED",
+                  });
+                  this.$router.push("/succeed");
+                },
+                onPending: (result) => {
+                  this.pendingAlert = true;
+                  axios.post("/api/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    email: email,
+                    updatedRange: updatedRange,
+                    status: "PENDING",
+                  });
+                },
+                onError: function (result) {
+                  this.pendingAlert = true;
+                  axios.post("/api/updateStatus", {
+                    // axios.post("http://localhost:3000/updateStatus", {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    email: email,
+                    updatedRange: updatedRange,
+                    status: "ERROR",
+                  });
+                },
               });
-              this.successAlert = true;
-              button.disabled = true;
-              button.className =
-                "rounded-md grey-400 px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
-              axios.post("/api/sheets", {
-              // axios.post("http://localhost:3000/sheets", {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                price: this.price,
-                order_id: this.order_id,
-              });
-              this.$router.push("/succeed");
-            },
-            onPending: (result) => {
-              this.pendingAlert = true;
-            },
-            onError: function (result) {
-              this.pendingAlert = true;
-            },
-          });
-        })
-        .catch((error) => {
-          console.log(error);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         });
     },
   },

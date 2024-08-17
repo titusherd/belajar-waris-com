@@ -50,7 +50,7 @@ import axios from "axios";
                 Course
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
-                Cara Mengembalikan Sisa Kelebihan Harta Kepada Ahli Waris - Rp 25.000 / tahun
+                Cara Mengembalikan Sisa Kelebihan Harta Kepada Ahli Waris - Rp 35.000 / tahun
               </p>
             </div>
           </div>
@@ -173,7 +173,7 @@ export default {
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
-      price: 25000,
+      price: 35000,
       order_id: "Cara Mengembalikan Sisa Kelebihan Harta Kepada Ahli Waris",
       status: "",
     };

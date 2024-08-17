@@ -10,6 +10,9 @@ import WasiatUntukAhliWaris from '@/views/WasiatUntukAhliWaris.vue'
 import WarisanBagiAnakDalamKandungan from '@/views/WarisanBagiAnakDalamKandungan.vue'
 import SebabTidakMendapatWarisan from '@/views/SebabTidakMendapatWarisan.vue'
 import CaraMengembalikanSisaHarta from '@/views/CaraMengembalikanSisaHarta.vue'
+import PenerimaPorsiWaris from '@/views/PenerimaPorsiWaris.vue'
+import MeninggalnyaAhliWarisSebelumDibagikan from '@/views/MeninggalnyaAhliWarisSebelumDibagikan.vue'
+import PorsiWarisanAntaraKakekdanSaudara from '@/views/PorsiWarisanAntaraKakekdanSaudara.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -68,6 +71,21 @@ const router = createRouter({
       path: '/checkout/cara-mengembalikan-sisa-harta',
       name: 'cara-mengembalikan-sisa-harta',
       component: CaraMengembalikanSisaHarta
+    },
+    {
+      path: '/checkout/penerima-porsi-waris',
+      name: 'penerima-porsi-waris',
+      component: PenerimaPorsiWaris
+    },
+    {
+      path: '/checkout/meninggalnya-ahli-waris-',
+      name: 'meninggalnya-ahli-waris-',
+      component: MeninggalnyaAhliWarisSebelumDibagikan
+    },
+    {
+      path: '/checkout/porsi-waris-antara-kakek-dan-saudara',
+      name: 'porsi-waris-antara-kakek-dan-saudara',
+      component: PorsiWarisanAntaraKakekdanSaudara
     },
   ]
 })

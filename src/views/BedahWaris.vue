@@ -52,7 +52,7 @@ import axios from "axios";
               </h2>
               <p class="mt-1 text-sm leading-6 text-gray-600">
                 <!-- CHANGE COURSE AND PRICE -->
-                Bedah Kasus Waris - Rp 600.000 / tahun
+                Bedah Kasus Waris - Rp 35.000 / tahun
               </p>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default {
       successAlert: false,
       pendingAlert: false,
       errorAlert: false,
-      price: 600000, //CHANGE THIS PRICE
+      price: 35.000, //CHANGE THIS PRICE
       order_id: "Bedah Kasus Waris ", //CHANGE THIS COURSE NAME
     };
   },
