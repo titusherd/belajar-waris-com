@@ -13,6 +13,7 @@ import CaraMengembalikanSisaHarta from '@/views/CaraMengembalikanSisaHarta.vue'
 import PenerimaPorsiWaris from '@/views/PenerimaPorsiWaris.vue'
 import MeninggalnyaAhliWarisSebelumDibagikan from '@/views/MeninggalnyaAhliWarisSebelumDibagikan.vue'
 import PorsiWarisanAntaraKakekdanSaudara from '@/views/PorsiWarisanAntaraKakekdanSaudara.vue'
+import ProgramKelasDasarIlmuWaris1A from '@/views/ProgramKelasDasarIlmuWaris1A.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -86,6 +87,11 @@ const router = createRouter({
       path: '/checkout/porsi-waris-antara-kakek-dan-saudara',
       name: 'porsi-waris-antara-kakek-dan-saudara',
       component: PorsiWarisanAntaraKakekdanSaudara
+    },
+    {
+      path: '/checkout/PKDIW-1A',
+      name: 'PKDIW-1A',
+      component: ProgramKelasDasarIlmuWaris1A
     },
   ]
 })
